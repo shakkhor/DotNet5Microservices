@@ -13,6 +13,6 @@ namespace Catalog.API.Repositories
 
         Task CreateProduct(Product product);
         Task<bool> UpdateProduct(Product product);
-        Task<bool> DeleteProduct(string id);
+        Task<bool> DeleteProductById(string id);
     }
 }

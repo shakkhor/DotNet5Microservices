@@ -22,7 +22,7 @@ namespace Catalog.API.Repositories
             await _catalogContext.Products.InsertOneAsync(product);
         }
 
-        public async Task<bool> DeleteProduct(string id)
+        public async Task<bool> DeleteProductById(string id)
         {
             var deleteResult = await _catalogContext.Products.DeleteOneAsync(x => x.Id == id);
             return deleteResult.IsAcknowledged && deleteResult.DeletedCount>0;
