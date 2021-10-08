@@ -21,8 +21,9 @@ namespace Catalog.API.Controllers
             _logger = logger;
             _productRepository = productRepository;
         }
-        [Route("[action]", Name = "GetProducts")]
-        [HttpGet]
+        //
+        //[Route("[action]", Name = "GetProducts")]
+        [HttpGet("[action]", Name = "GetProducts")]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
@@ -46,8 +47,8 @@ namespace Catalog.API.Controllers
             return Ok(product);
         }
 
-        [Route("[action]/{category}", Name = "GetProductsByCategory")]
-        [HttpGet]
+        //[Route("[action]/{category}", Name = "GetProductsByCategory")]
+        [HttpGet("[action]/{category}", Name = "GetProductsByCategory")]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(string category)
         {
@@ -55,8 +56,8 @@ namespace Catalog.API.Controllers
             return Ok(products);
         }
 
-        [Route("[action]/{name}", Name = "GetProductsByName")]
-        [HttpGet]
+        //[Route("[action]/{name}", Name = "GetProductsByName")]
+        [HttpGet("[action]/{name}", Name = "GetProductsByName")]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductsByName(string name)
         {
@@ -65,8 +66,8 @@ namespace Catalog.API.Controllers
         }
 
 
-        [Route("[action]", Name = "UpdateProduct")]
-        [HttpPut]
+        //[Route("[action]", Name = "UpdateProduct")]
+        [HttpPut("[action]", Name = "UpdateProduct")]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> UpdateProduct([FromBody] Product product)
         {
