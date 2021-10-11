@@ -10,6 +10,6 @@ namespace Basket.API.Repositories
     {
         Task<ShoppingCart> GetShoppingCart(string userId);
         Task<ShoppingCart> UpdateShoppingCart(ShoppingCart shoppingCart);
-        Task EmptyCart(string userId);
+        Task<bool> EmptyCart(string userId);
     }
 }

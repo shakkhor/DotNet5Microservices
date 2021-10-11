@@ -17,9 +17,10 @@ namespace Basket.API.Repositories
             _redisCache = redisCache;
         }
 
-        public async Task EmptyCart(string userId)
+        public async Task<bool> EmptyCart(string userId)
         {
             await _redisCache.RemoveAsync(userId);
+            return true;
         }
 
         public async Task<ShoppingCart> GetShoppingCart(string userId)
@@ -31,7 +32,7 @@ namespace Basket.API.Repositories
                 return JsonConvert.DeserializeObject<ShoppingCart>(basket);
             }
 
-            return null;
+            return new ShoppingCart();
         }
 
         public async Task<ShoppingCart> UpdateShoppingCart(ShoppingCart shoppingCart)
