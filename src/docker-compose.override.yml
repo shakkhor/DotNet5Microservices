@@ -8,11 +8,20 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+
   redisdb:
     container_name: redisdb
     restart: always
     ports:
       - "6379:6379"
+
+  discountdb:
+    container_name: discountdb
+    environment: 
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=DiscountDb
+
   portainer:
     container_name: portainer
     restart: always
