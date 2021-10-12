@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Basket.API.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/[controller]/[action]")]
     public class BasketController : ControllerBase
     {
         private readonly IBasketRepository _basketRepository;
@@ -20,15 +20,15 @@ namespace Basket.API.Controllers
             _basketRepository = basketRepository;
         }
 
-        [HttpGet("[action]/{id:length(24)}", Name = "GetShoppingCart")]
+        [HttpGet]
         [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<ShoppingCart>> GetShoppingCart(string userId)
+        public async Task<ActionResult<ShoppingCart>> GetShoppingCart([FromQuery]string userId)
         {
             return Ok(await _basketRepository.GetShoppingCart(userId));
         }
 
 
-        [HttpPost("[action]", Name = "UpdateProduct")]
+        [HttpPost]
         [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<ShoppingCart>> UpdateShoppinCart(ShoppingCart shoppingCart)
         {
@@ -36,9 +36,9 @@ namespace Basket.API.Controllers
         }
 
 
-        [HttpDelete("[action]/{id:length(24)}", Name = "DeleteProduct")]
+        [HttpDelete]
         [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> DeleteProduct(string userId)
+        public async Task<IActionResult> EmptyCart([FromQuery] string userId)
         {
             return Ok(await _basketRepository.EmptyCart(userId));
         }
